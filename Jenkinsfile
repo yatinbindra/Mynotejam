@@ -22,6 +22,22 @@ pipeline {
         sh 'docker push yatinb47/mynotejam:$(git rev-parse --short HEAD)'
       }
     }
+    stage('Pull') {
+      steps {
+        sh 'docker pull yatinb47/mynotejam:$(git rev-parse --short HEAD)'
+      }
+    }
+     stage('Deploy') {
+      steps {
+        sh 'a=$(docker rm -f notejam)
+            if [a=="notejam"]
+            then
+            docker run -dp 9000:3000 --name notejam yatinb47/mynotejam:$(git rev-parse --short HEAD) 
+            else
+            docker run -dp 9000:3000 --name notejam yatinb47/mynotejam:$(git rev-parse --short HEAD) 
+            fi'
+      }
+    }
   }
   post {
     always {
