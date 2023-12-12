@@ -29,7 +29,7 @@ pipeline {
     }
      stage('Deploy') {
       steps {
-        sh """
+        sh '''
             a=$(docker rm -f notejam)
             if [a=="notejam"]
             then
@@ -37,7 +37,7 @@ pipeline {
             else
             docker run -dp 9000:3000 --name notejam yatinb47/mynotejam:$(git rev-parse --short HEAD) 
             fi
-            """
+            '''
       }
     }
   }
