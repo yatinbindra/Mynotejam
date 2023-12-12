@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t yatinb47/mynotejam:$(git rev-parse --short HEAD) .'
+        sh 'docker build -t yatinb47/mynotejam:$(git rev-parse --short HEAD) ./notejam'
       }
     }
     stage('Login') {
